@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vedmängd-kalkylator — Vedvis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500&family=Space+Mono:wght@400;700&display=swap');
+
+  :root{
+    --bg: #1c1510;
+    --panel: #251c15;
+    --panel-2: #2c221a;
+    --ring: #3c2e22;
+    --ember: #e8743a;
+    --ember-soft: #e8743a33;
+    --cream: #f2e8d6;
+    --muted: #a4917c;
+    --moss: #7a8f5e;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.65;
+  }
+
+  .wrap{ max-width: 640px; margin: 0 auto; padding: 0 28px 60px; }
+  .wrap-wide{ max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+  header{ border-bottom: 1px solid var(--ring); padding: 22px 0; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; }
+  .logo{ font-family:'Fraunces', serif; font-weight:700; font-size:24px; letter-spacing:-0.01em; color: var(--cream); text-decoration:none; }
+  .logo span{ color: var(--ember); }
+  .navlinks{ display:flex; gap:32px; font-size:14px; color:var(--muted); }
+  .navlinks a{ color:inherit; text-decoration:none; transition: color .15s; }
+  .navlinks a:hover{ color: var(--cream); }
+  .navlinks a.active{ color: var(--ember); }
+
+  .head{ padding: 32px 0 0; }
+  .eyebrow{
+    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ember); margin-bottom: 10px;
+  }
+  h1{
+    font-family:'Fraunces', serif; font-weight: 600; font-size: 32px; letter-spacing: -0.01em;
+  }
+  .head p{ color: var(--muted); font-size: 14px; margin-top: 8px; }
+
+  .block{ margin-bottom: 26px; }
+  .label{
+    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+  }
+  .label-row{ display:flex; justify-content:space-between; margin-bottom: 10px; }
+  .label-row .val{ font-family:'Space Mono', monospace; font-size: 13px; color: var(--cream); }
+
+  .opt-grid{ display:grid; gap: 8px; }
+  .opt-grid.cols3{ grid-template-columns: repeat(3, 1fr); }
+  .opt-grid.cols2{ grid-template-columns: repeat(2, 1fr); }
+  .opt-grid.cols1{ grid-template-columns: 1fr; }
+
+  .opt{
+    cursor: pointer; transition: all 0.15s; border: 1px solid var(--ring);
+    background: var(--panel); color: var(--muted); border-radius: 4px;
+    padding: 10px 14px; font-size: 13px; text-align: left; font-family: inherit;
+  }
+  .opt:hover{ border-color: var(--ember); color: var(--cream); }
+  .opt.active{ border-color: var(--ember); background: var(--panel-2); color: var(--cream); }
+
+  input[type="range"]{
+    -webkit-appearance: none; width: 100%; height: 3px; background: var(--ring);
+    border-radius: 2px; outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--ember); cursor: pointer;
+  }
+  input[type="range"]::-moz-range-thumb{
+    width: 16px; height: 16px; border-radius: 50%; background: var(--ember);
+    cursor: pointer; border: none;
+  }
+
+  .result{
+    border: 1px solid var(--ring); border-radius: 8px; overflow: hidden; background: var(--panel);
+    transition: transform 0.2s;
+  }
+  .result.pulse{ animation: pulse 0.4s ease-out; }
+  @keyframes pulse{ 0%{transform:scale(1);} 50%{transform:scale(1.02);} 100%{transform:scale(1);} }
+
+  .result-main{ padding: 24px; border-bottom: 1px solid var(--ring); text-align: center; }
+  .result-main .lbl{
+    font-family:'Space Mono', monospace; font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+  }
+  .result-main .num{
+    font-family:'Fraunces', serif; font-weight: 600; font-size: 56px; color: var(--ember); letter-spacing: -0.02em;
+  }
+  .result-main .num .unit{ font-size: 22px; color: var(--muted); margin-left: 8px; }
+
+  .result-split{ display:grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--ring); }
+  .result-split > div{ padding: 16px 24px; }
+  .result-split > div:first-child{ border-right: 1px solid var(--ring); }
+  .result-split .lbl{
+    font-family:'Space Mono', monospace; font-size: 10px; color: var(--muted);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .result-split .num{ font-family:'Fraunces', serif; font-size: 22px; font-weight: 600; }
+
+  .energy-section{ padding: 16px 24px; }
+  .energy-section .lbl{
+    font-family:'Space Mono', monospace; font-size: 10px; color: var(--muted);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .energy-row{ margin-bottom: 8px; }
+  .energy-row:last-child{ margin-bottom: 0; }
+  .energy-top{ display:flex; justify-content:space-between; margin-bottom: 4px; }
+  .energy-top .name{ font-size: 12px; }
+  .energy-top .name.active{ color: var(--cream); }
+  .energy-top .name:not(.active){ color: var(--muted); }
+  .energy-top .val{ font-family:'Space Mono', monospace; font-size: 11px; color: var(--muted); }
+  .energy-bar{ height: 3px; background: var(--ring); border-radius: 2px; }
+  .energy-fill{ height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+
+  .footnote{ font-size: 11px; color: var(--muted); margin-top: 20px; line-height: 1.6; }
+
+  @media (max-width: 600px){
+    .opt-grid.cols3{ grid-template-columns: 1fr 1fr; }
+    .navlinks{ display:none; }
+    h1{ font-size: 26px; }
+    .result-main .num{ font-size: 44px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap-wide">
+    <header>
+      <div class="nav">
+        <a href="index.html" class="logo">Ved<span>vis</span></a>
+        <nav class="navlinks">
+          <a href="fuktkvot.html">Fuktkvot</a>
+          <a href="forvaring.html">Förvaring</a>
+          <a href="tradslag.html">Trädslag</a>
+          <a href="#">Verktyg</a>
+          <a href="kalkylator.html" class="active">Kalkylator</a>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Vedvis — Verktyg</div>
+      <h1>Vedmängd-kalkylator</h1>
+      <p>Uppskatta hur mycket ved du behöver för en vintersäsong.</p>
+    </div>
+
+    <div style="height:32px;"></div>
+
+    <!-- House size -->
+    <div class="block">
+      <div class="label">Husstorlek</div>
+      <div class="opt-grid cols3" id="houseSize">
+        <button class="opt active" data-id="small" data-kwh="90">&lt; 80 m²</button>
+        <button class="opt" data-id="medium" data-kwh="110">80–140 m²</button>
+        <button class="opt" data-id="large" data-kwh="130">&gt; 140 m²</button>
+      </div>
+    </div>
+
+    <!-- Area slider -->
+    <div class="block">
+      <div class="label-row">
+        <span class="label" style="margin-bottom:0;">Boyta</span>
+        <span class="val" id="areaVal">120 m²</span>
+      </div>
+      <input type="range" id="areaSlider" min="40" max="250" step="5" value="120">
+    </div>
+
+    <!-- Heating share -->
+    <div class="block">
+      <div class="label">Hur mycket värmer veden?</div>
+      <div class="opt-grid cols1" id="heatingShare">
+        <button class="opt" data-id="supplement" data-factor="0.25">Komplement (kvällar/helger)</button>
+        <button class="opt active" data-id="main-partial" data-factor="0.55">Huvudvärme, delvis annat</button>
+        <button class="opt" data-id="main-only" data-factor="0.85">Enda värmekälla</button>
+      </div>
+    </div>
+
+    <!-- Species -->
+    <div class="block" style="margin-bottom:32px;">
+      <div class="label">Trädslag (mest av)</div>
+      <div class="opt-grid cols2" id="species">
+        <button class="opt active" data-id="bjork" data-kwhm3="1900">Björk</button>
+        <button class="opt" data-id="gran" data-kwhm3="1500">Gran</button>
+        <button class="opt" data-id="ek" data-kwhm3="2100">Ek</button>
+        <button class="opt" data-id="blandved" data-kwhm3="1700">Blandved</button>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="result" id="result">
+      <div class="result-main">
+        <div class="lbl">Staplad volym (torr ved, ca 18% fukt)</div>
+        <div class="num"><span id="m3Stacked">3.0</span><span class="unit">m³</span></div>
+      </div>
+      <div class="result-split">
+        <div>
+          <div class="lbl">Löst staplat (ca)</div>
+          <div class="num"><span id="m3Loose">4.2</span> m³</div>
+        </div>
+        <div>
+          <div class="lbl">Energibehov</div>
+          <div class="num"><span id="kwhNeed">5 940</span> kWh</div>
+        </div>
+      </div>
+      <div class="energy-section">
+        <div class="lbl">Energiinnehåll per m³ — jämfört med ditt val</div>
+        <div id="energyBars"></div>
+      </div>
+    </div>
+
+    <p class="footnote">
+      Beräkningen är en uppskattning baserad på schabloner för energibehov per kvadratmeter och energiinnehåll vid ca 18% fuktkvot. Faktiskt behov varierar med isolering, klimat och eldningsvanor.
+    </p>
+  </div>
+
+<script>
+  const SPECIES = {
+    bjork: { label: "Björk", kwhPerM3: 1900 },
+    gran: { label: "Gran", kwhPerM3: 1500 },
+    ek: { label: "Ek", kwhPerM3: 2100 },
+    blandved: { label: "Blandved", kwhPerM3: 1700 },
+  };
+
+  let state = {
+    houseSizeKwh: 110,
+    area: 120,
+    heatingFactor: 0.55,
+    species: "bjork",
+  };
+
+  function setupGroup(groupId, dataAttr, stateKey, parse) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll(".opt").forEach(btn => {
+      btn.addEventListener("click", () => {
+        group.querySelectorAll(".opt").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const raw = btn.dataset[dataAttr];
+        state[stateKey] = parse ? parse(raw) : raw;
+        render();
+      });
+    });
+  }
+
+  setupGroup("houseSize", "kwh", "houseSizeKwh", Number);
+  setupGroup("heatingShare", "factor", "heatingFactor", Number);
+  setupGroup("species", "id", "species");
+
+  const areaSlider = document.getElementById("areaSlider");
+  const areaVal = document.getElementById("areaVal");
+  areaSlider.addEventListener("input", () => {
+    state.area = Number(areaSlider.value);
+    areaVal.textContent = state.area + " m²";
+    render();
+  });
+
+  function render() {
+    const speciesData = SPECIES[state.species];
+    const totalKwhNeed = state.area * state.houseSizeKwh;
+    const woodKwhNeed = totalKwhNeed * state.heatingFactor;
+    const m3Stacked = woodKwhNeed / speciesData.kwhPerM3;
+    const m3Loose = m3Stacked * 1.4;
+
+    document.getElementById("m3Stacked").textContent = m3Stacked.toFixed(1);
+    document.getElementById("m3Loose").textContent = m3Loose.toFixed(1);
+    document.getElementById("kwhNeed").textContent = Math.round(woodKwhNeed).toLocaleString("sv-SE");
+
+    const barsContainer = document.getElementById("energyBars");
+    barsContainer.innerHTML = "";
+    Object.entries(SPECIES).forEach(([key, s]) => {
+      const pct = (s.kwhPerM3 / 2100) * 100;
+      const isActive = key === state.species;
+      const row = document.createElement("div");
+      row.className = "energy-row";
+      row.innerHTML = `
+        <div class="energy-top">
+          <span class="name ${isActive ? 'active' : ''}">${s.label}</span>
+          <span class="val">${s.kwhPerM3} kWh/m³</span>
+        </div>
+        <div class="energy-bar"><div class="energy-fill" style="width:${pct}%; background:${isActive ? '#e8743a' : '#5f7a52'};"></div></div>
+      `;
+      barsContainer.appendChild(row);
+    });
+
+    const result = document.getElementById("result");
+    result.classList.remove("pulse");
+    requestAnimationFrame(() => result.classList.add("pulse"));
+  }
+
+  render();
+</script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Björk vs gran vs ek — energiinnehåll och brinntid — Vedvis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500&family=Space+Mono:wght@400;700&display=swap');
+
+  :root{
+    --bg: #1c1510;
+    --panel: #251c15;
+    --panel-2: #2c221a;
+    --ring: #3c2e22;
+    --ember: #e8743a;
+    --ember-soft: #e8743a33;
+    --cream: #f2e8d6;
+    --muted: #a4917c;
+    --moss: #7a8f5e;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.65;
+  }
+
+  .wrap{ max-width: 760px; margin: 0 auto; padding: 0 28px; }
+  .wrap-wide{ max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+  header{ border-bottom: 1px solid var(--ring); padding: 22px 0; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; }
+  .logo{ font-family:'Fraunces', serif; font-weight:700; font-size:24px; letter-spacing:-0.01em; color: var(--cream); }
+  .logo span{ color: var(--ember); }
+  .navlinks{ display:flex; gap:32px; font-size:14px; color:var(--muted); }
+  .navlinks a{ color:inherit; text-decoration:none; transition: color .15s; }
+  .navlinks a:hover{ color: var(--cream); }
+  .navlinks a.active{ color: var(--ember); }
+
+  .article-head{ padding: 56px 0 36px; border-bottom: 1px solid var(--ring); }
+  .breadcrumb{
+    font-family:'Space Mono', monospace; font-size:11px; letter-spacing:0.14em;
+    text-transform:uppercase; color: var(--muted); margin-bottom: 18px;
+  }
+  .breadcrumb a{ color: var(--ember); text-decoration:none; }
+  .article-head .tag{
+    display:inline-block; font-family:'Space Mono', monospace; font-size: 10px;
+    letter-spacing:0.14em; text-transform:uppercase; color: var(--ember);
+    border: 1px solid var(--ember); border-radius: 3px; padding: 4px 10px; margin-bottom: 18px;
+  }
+  h1{
+    font-family:'Fraunces', serif; font-weight:600; font-size: 42px;
+    line-height:1.15; letter-spacing:-0.02em; margin-bottom: 18px;
+  }
+  .article-meta{
+    font-family:'Space Mono', monospace; font-size: 12px; color: var(--muted);
+    display:flex; gap: 20px;
+  }
+
+  .article-body{ padding: 44px 0 0; }
+  .article-body h2{
+    font-family:'Fraunces', serif; font-weight:600; font-size: 26px;
+    margin: 44px 0 16px; letter-spacing: -0.01em;
+  }
+  .article-body p{ font-size: 16px; color: #d8c9b6; margin-bottom: 18px; }
+  .article-body p strong{ color: var(--cream); }
+  .article-body ul{ margin: 0 0 18px 22px; color: #d8c9b6; font-size: 16px; }
+  .article-body li{ margin-bottom: 8px; }
+
+  .lede{
+    font-family:'Fraunces', serif; font-size: 20px; font-weight: 400;
+    color: var(--cream); margin-bottom: 28px; line-height: 1.6;
+  }
+
+  .stat-row{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    margin: 28px 0 36px;
+  }
+  .stat{
+    border: 1px solid var(--ring); border-radius: 6px; padding: 20px;
+    text-align:center;
+  }
+  .stat .num{
+    font-family:'Fraunces', serif; font-weight:600; font-size: 30px; color: var(--ember);
+  }
+  .stat .lbl{
+    font-family:'Space Mono', monospace; font-size: 10px; letter-spacing:0.1em;
+    text-transform:uppercase; color: var(--muted); margin-top: 6px;
+  }
+
+  /* Comparison bars */
+  .compare{ margin: 28px 0 36px; border: 1px solid var(--ring); border-radius: 6px; padding: 24px; }
+  .compare-row{ margin-bottom: 18px; }
+  .compare-row:last-child{ margin-bottom: 0; }
+  .compare-row .top{ display:flex; justify-content:space-between; margin-bottom: 8px; }
+  .compare-row .top .name{ font-family:'Fraunces', serif; font-size: 16px; font-weight: 600; }
+  .compare-row .top .val{ font-family:'Space Mono', monospace; font-size: 13px; color: var(--muted); }
+  .compare-bar{ height: 8px; background: var(--ring); border-radius: 4px; overflow:hidden; }
+  .compare-fill{ height: 100%; border-radius: 4px; }
+
+  .product-box{
+    background: var(--panel); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 28px; margin: 36px 0; display:grid; grid-template-columns: auto 1fr; gap: 24px; align-items:center;
+  }
+  .product-icon{
+    width: 56px; height: 56px; border-radius: 6px; background: var(--panel-2);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size: 24px; color: var(--ember); border: 1px solid var(--ring);
+  }
+  .product-box h3{ font-family:'Fraunces', serif; font-weight:600; font-size: 19px; margin-bottom: 6px; }
+  .product-box p{ font-size: 13.5px; color: var(--muted); margin-bottom: 14px; }
+  .product-box .btn{
+    display:inline-block; font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.05em;
+    padding: 10px 20px; border-radius: 3px; text-decoration:none;
+    background: var(--ember); color: var(--bg); transition: background .15s;
+  }
+  .product-box .btn:hover{ background: #f08c54; }
+
+  .note{
+    border-left: 3px solid var(--ember); padding: 4px 0 4px 20px; margin: 28px 0;
+    color: var(--muted); font-size: 14.5px; font-style: italic;
+  }
+
+  .disclosure{
+    border: 1px solid var(--ring); border-radius: 6px; padding: 18px 22px;
+    font-size: 12.5px; color: var(--muted); display:flex; gap: 12px; align-items:flex-start;
+    margin: 48px 0 0;
+  }
+  .disclosure .mark{ font-family:'Space Mono', monospace; color: var(--ember); font-size:13px; flex-shrink:0; }
+
+  .related{ padding: 60px 0; border-top: 1px solid var(--ring); margin-top: 50px; }
+  .related h2{
+    font-family:'Fraunces', serif; font-weight:600; font-size: 26px; margin-bottom: 28px;
+  }
+  .related-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .related-card{
+    background: var(--panel); border:1px solid var(--ring); border-radius: 6px;
+    padding: 20px; transition: border-color .15s, transform .15s; text-decoration:none; display:block;
+  }
+  .related-card:hover{ border-color: var(--ember); transform: translateY(-3px); }
+  .related-card .tag{
+    font-family:'Space Mono', monospace; font-size: 10px; letter-spacing:0.14em;
+    text-transform:uppercase; color: var(--ember); margin-bottom: 10px; display:block;
+  }
+  .related-card h3{
+    font-family:'Fraunces', serif; font-weight:600; font-size: 16px; line-height:1.3; color: var(--cream);
+  }
+
+  footer{
+    border-top: 1px solid var(--ring); padding: 36px 0;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size: 13px; color: var(--muted); flex-wrap:wrap; gap:16px;
+  }
+
+  @media (max-width: 760px){
+    h1{ font-size: 30px; }
+    .stat-row{ grid-template-columns: 1fr; }
+    .product-box{ grid-template-columns: 1fr; text-align:center; }
+    .product-icon{ margin: 0 auto; }
+    .related-grid{ grid-template-columns: 1fr; }
+    .navlinks{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap-wide">
+    <header>
+      <div class="nav">
+        <a href="index.html" style="text-decoration:none;"><div class="logo">Ved<span>vis</span></div></a>
+        <nav class="navlinks">
+          <a href="fuktkvot.html">Fuktkvot</a>
+          <a href="forvaring.html">Förvaring</a>
+          <a href="tradslag.html" class="active">Trädslag</a>
+          <a href="#">Verktyg</a>
+          <a href="kalkylator.html">Kalkylator</a>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <div class="wrap">
+    <div class="article-head">
+      <div class="breadcrumb"><a href="index.html">Vedvis</a> / Trädslag</div>
+      <span class="tag">Grunder</span>
+      <h1>Björk vs gran vs ek — energiinnehåll och brinntid</h1>
+      <div class="article-meta">
+        <span>6 min läsning</span>
+        <span>Uppdaterad jan 2026</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p class="lede">"Vilket trädslag är bäst?" är en av de vanligaste frågorna om vedeldning — och svaret är mindre dramatiskt än många tror. Skillnaden mellan trädslag handlar i grunden om densitet, vilket påverkar både energiinnehåll och brinntid.</p>
+
+      <p>Här är siffrorna, vad de betyder i praktiken, och varför fuktkvoten oftast spelar större roll än valet av trädslag.</p>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">1 900</div>
+          <div class="lbl">kWh/m³ — Björk</div>
+        </div>
+        <div class="stat">
+          <div class="num">1 500</div>
+          <div class="lbl">kWh/m³ — Gran</div>
+        </div>
+        <div class="stat">
+          <div class="num">2 100</div>
+          <div class="lbl">kWh/m³ — Ek</div>
+        </div>
+      </div>
+
+      <h2>Vad menas med energiinnehåll per kubikmeter?</h2>
+      <p>Siffrorna ovan visar ungefär hur mycket värmeenergi en kubikmeter <strong>staplad, torr ved</strong> (ca 18% fuktkvot) innehåller. Skillnaden mellan gran och ek — drygt 40% — beror nästan helt på densitet. Ek är ett tätare träslag, vilket innebär att en given volym väger mer och innehåller mer brännbart material.</p>
+
+      <div class="compare">
+        <div class="compare-row">
+          <div class="top"><span class="name">Ek</span><span class="val">2 100 kWh/m³</span></div>
+          <div class="compare-bar"><div class="compare-fill" style="width:100%; background:#e8743a;"></div></div>
+        </div>
+        <div class="compare-row">
+          <div class="top"><span class="name">Björk</span><span class="val">1 900 kWh/m³</span></div>
+          <div class="compare-bar"><div class="compare-fill" style="width:90.5%; background:#c98a5c;"></div></div>
+        </div>
+        <div class="compare-row">
+          <div class="top"><span class="name">Gran</span><span class="val">1 500 kWh/m³</span></div>
+          <div class="compare-bar"><div class="compare-fill" style="width:71.4%; background:#7a8f5e;"></div></div>
+        </div>
+      </div>
+
+      <h2>Brinntid: snabb värme kontra långvarig glödbädd</h2>
+      <p>Energiinnehåll är bara halva bilden — hur veden brinner spelar också stor roll för hur du upplever värmen:</p>
+
+      <ul>
+        <li><strong>Gran och tall</strong> tänder snabbt och ger snabb, intensiv värme — perfekt för att få upp temperaturen fort på morgonen eller efter en kall natt. Nackdelen är att de brinner ut snabbare och kräver tätare påfyllning.</li>
+        <li><strong>Björk</strong> ligger mitt emellan — relativt lättantänd men med längre brinntid än gran, vilket gör den till en favorit för vardagseldning.</li>
+        <li><strong>Ek och andra hårda lövträd</strong> tar längre tid att få fart på, men bygger en stabil glödbädd som håller värmen långt efter att lågorna slocknat — perfekt för natten eller när du vill ha jämn värme under lång tid.</li>
+      </ul>
+
+      <h2>Vad spelar egentligen störst roll — trädslag eller fuktkvot?</h2>
+      <p>Skillnaden mellan väl torkad björk (18% fuktkvot) och dåligt torkad ek (28% fuktkvot) i praktisk värmeeffekt är ofta större än skillnaden mellan väl torkad björk och väl torkad ek. Med andra ord: en korrekt torkad "sämre" vedsort ger mer värme än en dåligt torkad "bättre" sort.</p>
+
+      <div class="note">
+        Om du bara skulle optimera en enda variabel — välj fuktkvot, inte trädslag. Se artikeln om hur torr ved bör vara innan eldning för att mäta detta själv.
+      </div>
+
+      <h2>Praktiska rekommendationer</h2>
+      <p>De flesta som eldar regelbundet drar nytta av att blanda trädslag istället för att hålla sig till ett enda:</p>
+
+      <ul>
+        <li><strong>Gran/tall</strong> för snabb upptändning och morgonvärme</li>
+        <li><strong>Björk</strong> som vardagsved — bra balans mellan tillgänglighet, pris och prestanda</li>
+        <li><strong>Ek eller annat hårt lövträ</strong> sparat till kvällar då du vill att glöden håller länge, t.ex. över natten</li>
+      </ul>
+
+      <p>Ett vanligt mönster i svenska hushåll är att björk utgör basen, med inslag av gran för snabbtändning och ett mindre lager hårdved för natt och kallaste dagarna.</p>
+
+      <div class="product-box">
+        <div class="product-icon">🪓</div>
+        <div>
+          <h3>Hårdare ved kräver bättre verktyg</h3>
+          <p>Ek och andra hårda lövträd är betydligt tyngre att klyva för hand. En kvalitetsyxa med rätt geometri gör skillnad — särskilt om du planerar att elda mer hårdved framöver.</p>
+          <a href="#" class="btn">Se klyvyxor →</a>
+        </div>
+      </div>
+
+      <h2>Sammanfattning</h2>
+      <p>Ek ger mest energi per kubikmeter och längst brinntid, gran minst men tänder snabbast, och björk ligger mitt emellan med bra allround-egenskaper. Skillnaderna är reella men ofta mindre avgörande än fuktkvoten — en väl torkad "sämre" vedsort slår nästan alltid en dåligt torkad "bättre" sort.</p>
+
+      <div class="disclosure">
+        <span class="mark">i</span>
+        <span>Vedvis innehåller affiliatelänkar. Om du köper via en länk på sajten kan vi få en liten provision, utan extra kostnad för dig. Vi rekommenderar bara produkter vi själva skulle valt baserat på specifikationer och användarrecensioner.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap-wide">
+    <div class="related">
+      <h2>Läs vidare</h2>
+      <div class="related-grid">
+        <a href="fuktkvot.html" class="related-card">
+          <span class="tag">Grunder</span>
+          <h3>Hur torr ska veden vara innan eldning?</h3>
+        </a>
+        <a href="forvaring.html" class="related-card">
+          <span class="tag">Förvaring</span>
+          <h3>Förvara ved rätt — undvik mögel och röta</h3>
+        </a>
+        <a href="kalkylator.html" class="related-card">
+          <span class="tag">Verktyg</span>
+          <h3>Vedmängd-kalkylatorn — räkna ut din vinterförbrukning</h3>
+        </a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="logo">Ved<span style="color:var(--ember)">vis</span></div>
+      <div>© 2026 Vedvis — Byggd med kunskap om vedeldning</div>
+    </footer>
+  </div>
+
+</body>
+</html>

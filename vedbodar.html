@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Färdiga vedbodar — 5 alternativ jämförda — Vedvis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500&family=Space+Mono:wght@400;700&display=swap');
+
+  :root{
+    --bg: #1c1510;
+    --panel: #251c15;
+    --panel-2: #2c221a;
+    --ring: #3c2e22;
+    --ember: #e8743a;
+    --ember-soft: #e8743a33;
+    --cream: #f2e8d6;
+    --muted: #a4917c;
+    --moss: #7a8f5e;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ background: var(--bg); color: var(--cream); font-family: 'IBM Plex Sans', sans-serif; line-height: 1.65; }
+  .wrap{ max-width: 760px; margin: 0 auto; padding: 0 28px; }
+  .wrap-wide{ max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+  header{ border-bottom: 1px solid var(--ring); padding: 22px 0; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; }
+  .logo{ font-family:'Fraunces', serif; font-weight:700; font-size:24px; letter-spacing:-0.01em; color: var(--cream); text-decoration:none; }
+  .logo span{ color: var(--ember); }
+  .navlinks{ display:flex; gap:32px; font-size:14px; color:var(--muted); }
+  .navlinks a{ color:inherit; text-decoration:none; transition: color .15s; }
+  .navlinks a:hover{ color: var(--cream); }
+  .navlinks a.active{ color: var(--ember); }
+
+  .article-head{ padding: 56px 0 36px; border-bottom: 1px solid var(--ring); }
+  .breadcrumb{ font-family:'Space Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color: var(--muted); margin-bottom: 18px; }
+  .breadcrumb a{ color: var(--ember); text-decoration:none; }
+  .article-head .tag{ display:inline-block; font-family:'Space Mono', monospace; font-size: 10px; letter-spacing:0.14em; text-transform:uppercase; color: var(--ember); border: 1px solid var(--ember); border-radius: 3px; padding: 4px 10px; margin-bottom: 18px; }
+  h1{ font-family:'Fraunces', serif; font-weight:600; font-size: 42px; line-height:1.15; letter-spacing:-0.02em; margin-bottom: 18px; }
+  .article-meta{ font-family:'Space Mono', monospace; font-size: 12px; color: var(--muted); display:flex; gap: 20px; }
+
+  .article-body{ padding: 44px 0 0; }
+  .article-body h2{ font-family:'Fraunces', serif; font-weight:600; font-size: 26px; margin: 44px 0 16px; letter-spacing: -0.01em; }
+  .article-body p{ font-size: 16px; color: #d8c9b6; margin-bottom: 18px; }
+  .article-body p strong{ color: var(--cream); }
+  .article-body ul{ margin: 0 0 18px 22px; color: #d8c9b6; font-size: 16px; }
+  .article-body li{ margin-bottom: 8px; }
+  .lede{ font-family:'Fraunces', serif; font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 28px; line-height: 1.6; }
+
+  /* Comparison table */
+  .compare-table{ width:100%; border-collapse:collapse; margin: 28px 0 36px; font-size: 14px; }
+  .compare-table th{ font-family:'Space Mono', monospace; font-size: 10px; letter-spacing:0.1em; text-transform:uppercase; color: var(--muted); padding: 10px 14px; text-align:left; border-bottom: 1px solid var(--ring); background: var(--panel); }
+  .compare-table td{ padding: 14px; border-bottom: 1px solid var(--ring); color: #d8c9b6; vertical-align:top; }
+  .compare-table tr:last-child td{ border-bottom: none; }
+  .compare-table tr:hover td{ background: var(--panel); }
+  .compare-table .name{ font-family:'Fraunces', serif; font-weight:600; font-size: 15px; color: var(--cream); }
+  .compare-table .price{ font-family:'Space Mono', monospace; color: var(--ember); font-size: 13px; }
+  .compare-table .verdict{ font-size: 12px; color: var(--moss); }
+
+  /* Product cards */
+  .product-box{ background: var(--panel); border: 1px solid var(--ring); border-radius: 8px; padding: 28px; margin: 36px 0; display:grid; grid-template-columns: auto 1fr; gap: 24px; align-items:center; }
+  .product-icon{ width: 56px; height: 56px; border-radius: 6px; background: var(--panel-2); display:flex; align-items:center; justify-content:center; font-family:'Fraunces', serif; font-size: 24px; color: var(--ember); border: 1px solid var(--ring); }
+  .product-box h3{ font-family:'Fraunces', serif; font-weight:600; font-size: 19px; margin-bottom: 6px; }
+  .product-box p{ font-size: 13.5px; color: var(--muted); margin-bottom: 14px; }
+  .product-box .btn{ display:inline-block; font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.05em; padding: 10px 20px; border-radius: 3px; text-decoration:none; background: var(--ember); color: var(--bg); transition: background .15s; }
+  .product-box .btn:hover{ background: #f08c54; }
+
+  .note{ border-left: 3px solid var(--ember); padding: 4px 0 4px 20px; margin: 28px 0; color: var(--muted); font-size: 14.5px; font-style: italic; }
+
+  .stat-row{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0 36px; }
+  .stat{ border: 1px solid var(--ring); border-radius: 6px; padding: 20px; text-align:center; }
+  .stat .num{ font-family:'Fraunces', serif; font-weight:600; font-size: 30px; color: var(--ember); }
+  .stat .lbl{ font-family:'Space Mono', monospace; font-size: 10px; letter-spacing:0.1em; text-transform:uppercase; color: var(--muted); margin-top: 6px; }
+
+  .disclosure{ border: 1px solid var(--ring); border-radius: 6px; padding: 18px 22px; font-size: 12.5px; color: var(--muted); display:flex; gap: 12px; align-items:flex-start; margin: 48px 0 0; }
+  .disclosure .mark{ font-family:'Space Mono', monospace; color: var(--ember); font-size:13px; flex-shrink:0; }
+
+  .related{ padding: 60px 0; border-top: 1px solid var(--ring); margin-top: 50px; }
+  .related h2{ font-family:'Fraunces', serif; font-weight:600; font-size: 26px; margin-bottom: 28px; }
+  .related-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .related-card{ background: var(--panel); border:1px solid var(--ring); border-radius: 6px; padding: 20px; transition: border-color .15s, transform .15s; text-decoration:none; display:block; }
+  .related-card:hover{ border-color: var(--ember); transform: translateY(-3px); }
+  .related-card .tag{ font-family:'Space Mono', monospace; font-size: 10px; letter-spacing:0.14em; text-transform:uppercase; color: var(--ember); margin-bottom: 10px; display:block; }
+  .related-card h3{ font-family:'Fraunces', serif; font-weight:600; font-size: 16px; line-height:1.3; color: var(--cream); }
+
+  footer{ border-top: 1px solid var(--ring); padding: 36px 0; display:flex; justify-content:space-between; align-items:center; font-size: 13px; color: var(--muted); flex-wrap:wrap; gap:16px; }
+
+  @media (max-width: 760px){
+    h1{ font-size: 30px; }
+    .stat-row{ grid-template-columns: 1fr; }
+    .product-box{ grid-template-columns: 1fr; text-align:center; }
+    .product-icon{ margin: 0 auto; }
+    .related-grid{ grid-template-columns: 1fr; }
+    .navlinks{ display:none; }
+    .compare-table{ font-size: 12px; }
+    .compare-table td, .compare-table th{ padding: 10px 8px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap-wide">
+    <header>
+      <div class="nav">
+        <a href="index.html" class="logo">Ved<span>vis</span></a>
+        <nav class="navlinks">
+          <a href="fuktkvot.html">Fuktkvot</a>
+          <a href="forvaring.html" class="active">Förvaring</a>
+          <a href="tradslag.html">Trädslag</a>
+          <a href="#">Verktyg</a>
+          <a href="kalkylator.html">Kalkylator</a>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <div class="wrap">
+    <div class="article-head">
+      <div class="breadcrumb"><a href="index.html">Vedvis</a> / Förvaring</div>
+      <span class="tag">Jämförelse</span>
+      <h1>Färdiga vedbodar — 5 alternativ jämförda</h1>
+      <div class="article-meta">
+        <span>11 min läsning</span>
+        <span>Uppdaterad jan 2026</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p class="lede">Att bygga en vedbod själv ger full kontroll över mått och material — men ett färdigt kit sparar tid och kräver inga förkunskaper. Här jämför vi fem alternativ i olika prisklasser, baserat på specifikationer och användaromdömen.</p>
+
+      <p>Gemensamt för alla alternativ nedan: de levereras som kit med förmonterade eller numrerade delar och monteringsanvisning. Ingen snickerikunskap krävs, men ett par extra händer underlättar avsevärt.</p>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">1–3 m³</div>
+          <div class="lbl">Vanlig kapacitet</div>
+        </div>
+        <div class="stat">
+          <div class="num">2–4 h</div>
+          <div class="lbl">Monteringstid</div>
+        </div>
+        <div class="stat">
+          <div class="num">2 000–15 000 kr</div>
+          <div class="lbl">Prisspann</div>
+        </div>
+      </div>
+
+      <h2>Vad skiljer en bra vedbod från en dålig?</h2>
+      <p>Det finns tre faktorer som avgör om en vedbod faktiskt gör jobbet:</p>
+      <ul>
+        <li><strong>Ventilation</strong> – sidorna bör ha genomluftning, annars torkar veden långsammare och risk för mögel ökar</li>
+        <li><strong>Taköverhäng</strong> – taket bör sticka ut tillräckligt för att regn inte ska blåsa in på veden</li>
+        <li><strong>Underlag</strong> – boden ska stå på något som håller golvet (och veden) fritt från markfukt</li>
+      </ul>
+      <p>Billiga alternativ sparar ofta in på just ventilation och taköverhäng. Det är värt att kontrollera dessa specifikationer noggrant innan köp.</p>
+
+      <h2>5 alternativ jämförda</h2>
+      <p>Priserna nedan är ungefärliga och varierar mellan återförsäljare. Kontrollera alltid aktuellt pris hos respektive butik.</p>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Modell</th>
+            <th>Kapacitet</th>
+            <th>Ungefärligt pris</th>
+            <th>Passar bäst för</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="name">Enkel vedställ (öppen)</div>
+              <div class="verdict">✓ Bäst ventilation, minst skydd</div>
+            </td>
+            <td>0,5–1 m³</td>
+            <td class="price">500–1 500 kr</td>
+            <td>Komplement till befintlig förvaring, terrass</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="name">Mindre träkit (Jula/Biltema)</div>
+              <div class="verdict">✓ Prisvärd, enkel montering</div>
+            </td>
+            <td>1–1,5 m³</td>
+            <td class="price">1 500–3 500 kr</td>
+            <td>Sommarstuga, liten förbrukning</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="name">Mellanstor träbod (Byggmax/Plus)</div>
+              <div class="verdict">✓ Bra balans pris/kvalitet</div>
+            </td>
+            <td>1,5–2,5 m³</td>
+            <td class="price">3 500–7 000 kr</td>
+            <td>Normalstort hus, huvudvärmekälla</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="name">Stor vedbod med dubbeldörr</div>
+              <div class="verdict">✓ Rymlig, bra för helårsvärme</div>
+            </td>
+            <td>2,5–4 m³</td>
+            <td class="price">7 000–12 000 kr</td>
+            <td>Stort hus eller lång vintersäsong</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="name">Premium impregnerad bod</div>
+              <div class="verdict">✓ Längst livslängd, minst underhåll</div>
+            </td>
+            <td>2–5 m³</td>
+            <td class="price">10 000–18 000 kr</td>
+            <td>Den som vill köpa en gång för alltid</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Vad ska man tänka på vid köp?</h2>
+      <ul>
+        <li><strong>Beräkna behovet först</strong> – använd vår kalkylator för att räkna ut hur många kubikmeter du behöver lagra. En bod som är för liten tvingar dig att stapla utomhus utan skydd</li>
+        <li><strong>Kontrollera om det krävs bygglov</strong> – en vedbod under 15 m² kräver normalt inget bygglov i Sverige, men kontrollera alltid med din kommun om du är osäker</li>
+        <li><strong>Material</strong> – obehandlat trä kräver målning/impregnering direkt, tryckimpregnerat trä klarar sig längre utan behandling</li>
+        <li><strong>Leveranskostnad</strong> – stora kit är tunga och skrymmande, fraktkostnaden kan vara betydande. Kontrollera alltid totalpriset inklusive frakt</li>
+      </ul>
+
+      <div class="note">
+        En vedbod i mellanklass (3 500–7 000 kr) räcker för de flesta hushåll. De billigaste alternativen håller kortare, de dyraste tillför sällan proportionerligt mer nytta för en privatperson.
+      </div>
+
+      <h2>DIY eller färdigt kit?</h2>
+      <p>Att bygga själv är billigare i material men dyrare i tid, och kräver grundläggande snickerikunskaper för ett bra resultat. Ett färdigt kit kostar mer men är monteringsklart på en eftermiddag och ger ett förutsägbart slutresultat.</p>
+      <p>För den som redan har virke, verktyg och erfarenhet är egenbygge ett bra alternativ. För alla andra är ett kit oftast den praktiska lösningen.</p>
+
+      <div class="product-box">
+        <div class="product-icon">🏚</div>
+        <div>
+          <h3>Hitta rätt vedbod för ditt behov</h3>
+          <p>Räkna ut hur mycket ved du behöver lagra med vår kalkylator — det ger dig ett konkret mått att utgå ifrån när du jämför vedbodar.</p>
+          <a href="kalkylator.html" class="btn">Räkna ut din vedmängd →</a>
+        </div>
+      </div>
+
+      <h2>Sammanfattning</h2>
+      <p>För de flesta hushåll är en mellanstor träbod i intervallet 3 500–7 000 kr det bästa valet — tillräcklig kapacitet, rimlig kvalitet och enkel montering. Kontrollera alltid ventilation, taköverhäng och om tryckimpregnering ingår innan köp, oavsett prisklass.</p>
+
+      <div class="disclosure">
+        <span class="mark">i</span>
+        <span>Vedvis innehåller affiliatelänkar. Om du köper via en länk på sajten kan vi få en liten provision, utan extra kostnad för dig. Vi rekommenderar bara produkter vi själva skulle valt baserat på specifikationer och användarrecensioner.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap-wide">
+    <div class="related">
+      <h2>Läs vidare</h2>
+      <div class="related-grid">
+        <a href="forvaring.html" class="related-card">
+          <span class="tag">Förvaring</span>
+          <h3>Förvara ved rätt — undvik mögel och röta</h3>
+        </a>
+        <a href="fuktkvot.html" class="related-card">
+          <span class="tag">Grunder</span>
+          <h3>Hur torr ska veden vara innan eldning?</h3>
+        </a>
+        <a href="kalkylator.html" class="related-card">
+          <span class="tag">Verktyg</span>
+          <h3>Vedmängd-kalkylatorn — räkna ut din vinterförbrukning</h3>
+        </a>
+      </div>
+    </div>
+    <footer>
+      <a href="index.html" class="logo" style="font-family:'Fraunces',serif;font-weight:700;font-size:17px;text-decoration:none;color:var(--cream);">Ved<span style="color:var(--ember)">vis</span></a>
+      <div>© 2026 Vedvis — Byggd med kunskap om vedeldning</div>
+    </footer>
+  </div>
+
+</body>
+</html>

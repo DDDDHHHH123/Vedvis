@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yxa, klyvkil eller maskin — välja rätt klyvverktyg — Vedvis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500&family=Space+Mono:wght@400;700&display=swap');
+
+  :root{
+    --bg: #1c1510;
+    --panel: #251c15;
+    --panel-2: #2c221a;
+    --ring: #3c2e22;
+    --ember: #e8743a;
+    --ember-soft: #e8743a33;
+    --cream: #f2e8d6;
+    --muted: #a4917c;
+    --moss: #7a8f5e;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ background: var(--bg); color: var(--cream); font-family: 'IBM Plex Sans', sans-serif; line-height: 1.65; }
+  .wrap{ max-width: 760px; margin: 0 auto; padding: 0 28px; }
+  .wrap-wide{ max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+  header{ border-bottom: 1px solid var(--ring); padding: 22px 0; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; }
+  .logo{ font-family:'Fraunces', serif; font-weight:700; font-size:24px; letter-spacing:-0.01em; color: var(--cream); text-decoration:none; }
+  .logo span{ color: var(--ember); }
+  .navlinks{ display:flex; gap:32px; font-size:14px; color:var(--muted); }
+  .navlinks a{ color:inherit; text-decoration:none; transition: color .15s; }
+  .navlinks a:hover{ color: var(--cream); }
+  .navlinks a.active{ color: var(--ember); }
+
+  .article-head{ padding: 56px 0 36px; border-bottom: 1px solid var(--ring); }
+  .breadcrumb{ font-family:'Space Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color: var(--muted); margin-bottom: 18px; }
+  .breadcrumb a{ color: var(--ember); text-decoration:none; }
+  .article-head .tag{ display:inline-block; font-family:'Space Mono', monospace; font-size: 10px; letter-spacing:0.14em; text-transform:uppercase; color: var(--ember); border: 1px solid var(--ember); border-radius: 3px; padding: 4px 10px; margin-bottom: 18px; }
+  h1{ font-family:'Fraunces', serif; font-weight:600; font-size: 42px; line-height:1.15; letter-spacing:-0.02em; margin-bottom: 18px; }
+  .article-meta{ font-family:'Space Mono', monospace; font-size: 12px; color: var(--muted); display:flex; gap: 20px; }
+
+  .article-body{ padding: 44px 0 0; }
+  .article-body h2{ font-family:'Fraunces', serif; font-weight:600; font-size: 26px; margin: 44px 0 16px; letter-spacing: -0.01em; }
+  .article-body p{ font-size: 16px; color: #d8c9b6; margin-bottom: 18px; }
+  .article-body p strong{ color: var(--cream); }
+  .article-body ul{ margin: 0 0 18px 22px; color: #d8c9b6; font-size: 16px; }
+  .article-body li{ margin-bottom: 8px; }
+  .lede{ font-family:'Fraunces', serif; font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 28px; line-height: 1.6; }
+
+  /* Option cards */
+  .option-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0 36px; }
+  .option-card{ border: 1px solid var(--ring); border-radius: 6px; padding: 22px; background: var(--panel); }
+  .option-card .icon{ font-size: 28px; margin-bottom: 12px; }
+  .option-card h3{ font-family:'Fraunces', serif; font-weight:600; font-size: 18px; margin-bottom: 8px; }
+  .option-card .price{ font-family:'Space Mono', monospace; font-size: 11px; color: var(--ember); letter-spacing:0.08em; margin-bottom: 10px; }
+  .option-card p{ font-size: 13px; color: var(--muted); margin-bottom: 0; }
+  .option-card .pros{ margin-top: 12px; font-size: 12px; color: var(--moss); }
+  .option-card .cons{ margin-top: 4px; font-size: 12px; color: #b45a5a; }
+
+  .product-box{ background: var(--panel); border: 1px solid var(--ring); border-radius: 8px; padding: 28px; margin: 36px 0; display:grid; grid-template-columns: auto 1fr; gap: 24px; align-items:center; }
+  .product-icon{ width: 56px; height: 56px; border-radius: 6px; background: var(--panel-2); display:flex; align-items:center; justify-content:center; font-family:'Fraunces', serif; font-size: 24px; color: var(--ember); border: 1px solid var(--ring); }
+  .product-box h3{ font-family:'Fraunces', serif; font-weight:600; font-size: 19px; margin-bottom: 6px; }
+  .product-box p{ font-size: 13.5px; color: var(--muted); margin-bottom: 14px; }
+  .product-box .btn{ display:inline-block; font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.05em; padding: 10px 20px; border-radius: 3px; text-decoration:none; background: var(--ember); color: var(--bg); transition: background .15s; }
+  .product-box .btn:hover{ background: #f08c54; }
+
+  /* Decision guide */
+  .decision{ border: 1px solid var(--ring); border-radius: 8px; overflow:hidden; margin: 28px 0 36px; }
+  .decision-row{ display:grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--ring); }
+  .decision-row:last-child{ border-bottom: none; }
+  .decision-row > div{ padding: 14px 20px; font-size: 14px; }
+  .decision-row > div:first-child{ color: var(--muted); border-right: 1px solid var(--ring); font-style:italic; }
+  .decision-row > div:last-child{ color: var(--cream); font-family:'Space Mono', monospace; font-size: 12px; }
+  .decision-head{ background: var(--panel); padding: 10px 20px; display:grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--ring); }
+  .decision-head span{ font-family:'Space Mono', monospace; font-size: 10px; letter-spacing:0.1em; text-transform:uppercase; color: var(--muted); }
+  .decision-head span:last-child{ border-left: 1px solid var(--ring); padding-left: 20px; }
+
+  .note{ border-left: 3px solid var(--ember); padding: 4px 0 4px 20px; margin: 28px 0; color: var(--muted); font-size: 14.5px; font-style: italic; }
+
+  .disclosure{ border: 1px solid var(--ring); border-radius: 6px; padding: 18px 22px; font-size: 12.5px; color: var(--muted); display:flex; gap: 12px; align-items:flex-start; margin: 48px 0 0; }
+  .disclosure .mark{ font-family:'Space Mono', monospace; color: var(--ember); font-size:13px; flex-shrink:0; }
+
+  .related{ padding: 60px 0; border-top: 1px solid var(--ring); margin-top: 50px; }
+  .related h2{ font-family:'Fraunces', serif; font-weight:600; font-size: 26px; margin-bottom: 28px; }
+  .related-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .related-card{ background: var(--panel); border:1px solid var(--ring); border-radius: 6px; padding: 20px; transition: border-color .15s, transform .15s; text-decoration:none; display:block; }
+  .related-card:hover{ border-color: var(--ember); transform: translateY(-3px); }
+  .related-card .tag{ font-family:'Space Mono', monospace; font-size: 10px; letter-spacing:0.14em; text-transform:uppercase; color: var(--ember); margin-bottom: 10px; display:block; }
+  .related-card h3{ font-family:'Fraunces', serif; font-weight:600; font-size: 16px; line-height:1.3; color: var(--cream); }
+
+  footer{ border-top: 1px solid var(--ring); padding: 36px 0; display:flex; justify-content:space-between; align-items:center; font-size: 13px; color: var(--muted); flex-wrap:wrap; gap:16px; }
+
+  @media (max-width: 760px){
+    h1{ font-size: 30px; }
+    .option-grid{ grid-template-columns: 1fr; }
+    .product-box{ grid-template-columns: 1fr; text-align:center; }
+    .product-icon{ margin: 0 auto; }
+    .related-grid{ grid-template-columns: 1fr; }
+    .navlinks{ display:none; }
+    .decision-row{ grid-template-columns: 1fr; }
+    .decision-row > div:first-child{ border-right: none; border-bottom: 1px solid var(--ring); }
+    .decision-head{ grid-template-columns: 1fr; }
+    .decision-head span:last-child{ border-left: none; padding-left: 0; border-top: 1px solid var(--ring); padding-top: 8px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap-wide">
+    <header>
+      <div class="nav">
+        <a href="index.html" class="logo">Ved<span>vis</span></a>
+        <nav class="navlinks">
+          <a href="fuktkvot.html">Fuktkvot</a>
+          <a href="forvaring.html">Förvaring</a>
+          <a href="tradslag.html">Trädslag</a>
+          <a href="#" class="active">Verktyg</a>
+          <a href="kalkylator.html">Kalkylator</a>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <div class="wrap">
+    <div class="article-head">
+      <div class="breadcrumb"><a href="index.html">Vedvis</a> / Verktyg</div>
+      <span class="tag">Köpguide</span>
+      <h1>Yxa, klyvkil eller maskin — välja rätt klyvverktyg</h1>
+      <div class="article-meta">
+        <span>9 min läsning</span>
+        <span>Uppdaterad jan 2026</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p class="lede">Valet av klyvverktyg handlar mer om volym och trädslag än om budget. En bra yxa räcker långt för de flesta — men det finns situationer där ett annat verktyg är det klokare valet från dag ett.</p>
+
+      <p>Här går vi igenom de tre huvudalternativen, vad de kostar, vad de klarar av, och vilket som passar vilken situation.</p>
+
+      <div class="option-grid">
+        <div class="option-card">
+          <div class="icon">🪓</div>
+          <h3>Klyvyxa</h3>
+          <div class="price">400 – 2 500 kr</div>
+          <p>Det klassiska alternativet. Tung, kilformad egg som spräcker fibrer istället för att skära.</p>
+          <div class="pros">✓ Ingen el eller bränsle<br>✓ Lång livslängd<br>✓ Bra motion</div>
+          <div class="cons">✗ Fysiskt krävande<br>✗ Svårt med kvistig ved</div>
+        </div>
+        <div class="option-card">
+          <div class="icon">⬦</div>
+          <h3>Klyvkil</h3>
+          <div class="price">150 – 600 kr</div>
+          <p>Drivs in med slägga eller yxhammaren. Bra för kvistig ved som studsar tillbaka en vanlig yxa.</p>
+          <div class="pros">✓ Billig<br>✓ Hanterar kvistig ved<br>✓ Liten och lätt att förvara</div>
+          <div class="cons">✗ Kräver slägga<br>✗ Långsamt för stora volymer</div>
+        </div>
+        <div class="option-card">
+          <div class="icon">⚙</div>
+          <h3>Vedklyv (maskin)</h3>
+          <div class="price">3 000 – 15 000 kr</div>
+          <p>Hydraulisk eller elektrisk. Hanterar alla trädslag och storlekar med minimal ansträngning.</p>
+          <div class="pros">✓ Snabb vid stora volymer<br>✓ Hanterar all ved<br>✓ Minimalt fysiskt</div>
+          <div class="cons">✗ Högt inköpspris<br>✗ Kräver underhåll</div>
+        </div>
+      </div>
+
+      <h2>Yxan — det mest underskattade alternativet</h2>
+      <p>En klyvyxa av god kvalitet är ett bättre verktyg än många tror, förutsatt att du klyver rätt ved. Björk, gran och tall klyver sig relativt enkelt längs fibrerna — en yxa på 2–3 kg med kilformad egg hanterar detta utan problem upp till 5–8 kubikmeter per säsong för en normalstark person.</p>
+
+      <p>Skillnaden mellan en billig yxa (200–400 kr) och en kvalitetsyxa (1 000–2 500 kr) är i praktiken:</p>
+      <ul>
+        <li><strong>Balans</strong> – en välbalanserad yxa kräver mindre kraft per hugg och tröttar ut axlar och rygg långsammare</li>
+        <li><strong>Skaftmaterial</strong> – hickory eller glasfiber klarar felhugg bättre än billiga träskaft</li>
+        <li><strong>Egggeometri</strong> – en välutformad egg sprider klyvkraften mer effektivt, vilket märks tydligt på kvistig eller senvuxen björk</li>
+      </ul>
+
+      <div class="product-box">
+        <div class="product-icon">🪓</div>
+        <div>
+          <h3>Kvalitetsyxor för vedklyvning</h3>
+          <p>Gränsfors Bruk och Fiskars X-serien är de mest omtalade alternativen i Sverige — båda tillverkade för nordiska förhållanden och med lång livslängd.</p>
+          <a href="#" class="btn">Se klyvyxor →</a>
+        </div>
+      </div>
+
+      <h2>Klyvkilen — bäst på kvistig ved</h2>
+      <p>En klyvkil är inte ett alternativ till yxan, utan ett komplement. När yxan studsar tillbaka från en kvistig stock är kilen rätt verktyg — du driver den in med en slägga och låter mekaniken göra jobbet.</p>
+
+      <p>Det är också ett bra alternativ för den som inte kan eller vill lyfta en tung yxa repetitivt. Kombinationen yxhammaren och kil är ergonomiskt lättare än en klyvyxa.</p>
+
+      <h2>Maskinen — när lönar det sig?</h2>
+      <p>En hydraulisk eller elektrisk vedklyv är en investering som lönar sig vid tillräckligt stor volym eller svår ved. Som tumregel:</p>
+      <ul>
+        <li><strong>Under 5 m³/år</strong> – yxa räcker i de flesta fall</li>
+        <li><strong>5–15 m³/år</strong> – beroende på kondition och trädslag; maskin sparar tid men är inte nödvändig</li>
+        <li><strong>Över 15 m³/år eller ek/hårt lövträ</strong> – maskin lönar sig tydligt, både i tid och kropp</li>
+      </ul>
+
+      <div class="note">
+        Hyr innan du köper. Många orter har maskinuthyrning för vedklyvar — att hyra en dag och klyvA säsongens ved är ofta billigare än att köpa en maskin för sporadiskt bruk.
+      </div>
+
+      <h2>Snabbguide — vilket passar dig?</h2>
+
+      <div class="decision">
+        <div class="decision-head">
+          <span>Din situation</span>
+          <span>Rekommendation</span>
+        </div>
+        <div class="decision-row">
+          <div>Eldar 2–5 m³ per år, blandved</div>
+          <div>Klyvyxa, mellanklass</div>
+        </div>
+        <div class="decision-row">
+          <div>Mycket kvistig eller senvuxen ved</div>
+          <div>Klyvyxa + klyvkil</div>
+        </div>
+        <div class="decision-row">
+          <div>Eldar 10+ m³ per år</div>
+          <div>Vedklyv (maskin)</div>
+        </div>
+        <div class="decision-row">
+          <div>Klyver sällan men har tungt virke</div>
+          <div>Hyra vedklyv vid behov</div>
+        </div>
+        <div class="decision-row">
+          <div>Svårt att lyfta tungt</div>
+          <div>Klyvkil + slägga, eller maskin</div>
+        </div>
+      </div>
+
+      <h2>Sammanfattning</h2>
+      <p>För de flesta som eldar 5–10 kubikmeter per år är en bra klyvyxa det smartaste valet — relativt låg kostnad, lång livslängd och ingen beroende av el eller bränsle. Komplettera med en klyvkil för kvistig ved. Maskin lönar sig tydligt vid höga volymer, om du har möjlighet att dela kostnaden med grannar eller hyr vid behov.</p>
+
+      <div class="disclosure">
+        <span class="mark">i</span>
+        <span>Vedvis innehåller affiliatelänkar. Om du köper via en länk på sajten kan vi få en liten provision, utan extra kostnad för dig. Vi rekommenderar bara produkter vi själva skulle valt baserat på specifikationer och användarrecensioner.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap-wide">
+    <div class="related">
+      <h2>Läs vidare</h2>
+      <div class="related-grid">
+        <a href="tradslag.html" class="related-card">
+          <span class="tag">Grunder</span>
+          <h3>Björk vs gran vs ek — energiinnehåll och brinntid</h3>
+        </a>
+        <a href="fuktkvot.html" class="related-card">
+          <span class="tag">Grunder</span>
+          <h3>Hur torr ska veden vara innan eldning?</h3>
+        </a>
+        <a href="vedbodar.html" class="related-card">
+          <span class="tag">Jämförelse</span>
+          <h3>Färdiga vedbodar — 5 alternativ jämförda</h3>
+        </a>
+      </div>
+    </div>
+    <footer>
+      <a href="index.html" class="logo" style="font-family:'Fraunces',serif;font-weight:700;font-size:17px;text-decoration:none;color:var(--cream);">Ved<span style="color:var(--ember)">vis</span></a>
+      <div>© 2026 Vedvis — Byggd med kunskap om vedeldning</div>
+    </footer>
+  </div>
+
+</body>
+</html>

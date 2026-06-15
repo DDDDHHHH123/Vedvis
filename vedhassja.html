@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vedhässja vs vedbod — vad torkar bäst? — Vedvis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500&family=Space+Mono:wght@400;700&display=swap');
+  :root{ --bg:#1c1510; --panel:#251c15; --panel-2:#2c221a; --ring:#3c2e22; --ember:#e8743a; --cream:#f2e8d6; --muted:#a4917c; --moss:#7a8f5e; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ background:var(--bg); color:var(--cream); font-family:'IBM Plex Sans',sans-serif; line-height:1.65; }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 28px; }
+  .wrap-wide{ max-width:1180px; margin:0 auto; padding:0 28px; }
+  header{ border-bottom:1px solid var(--ring); padding:22px 0; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; }
+  .logo{ font-family:'Fraunces',serif; font-weight:700; font-size:24px; letter-spacing:-0.01em; color:var(--cream); text-decoration:none; }
+  .logo span{ color:var(--ember); }
+  .navlinks{ display:flex; gap:32px; font-size:14px; color:var(--muted); }
+  .navlinks a{ color:inherit; text-decoration:none; transition:color .15s; }
+  .navlinks a:hover{ color:var(--cream); }
+  .navlinks a.active{ color:var(--ember); }
+  .article-head{ padding:56px 0 36px; border-bottom:1px solid var(--ring); }
+  .breadcrumb{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
+  .breadcrumb a{ color:var(--ember); text-decoration:none; }
+  .article-head .tag{ display:inline-block; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ember); border:1px solid var(--ember); border-radius:3px; padding:4px 10px; margin-bottom:18px; }
+  h1{ font-family:'Fraunces',serif; font-weight:600; font-size:42px; line-height:1.15; letter-spacing:-0.02em; margin-bottom:18px; }
+  .article-meta{ font-family:'Space Mono',monospace; font-size:12px; color:var(--muted); display:flex; gap:20px; }
+  .article-body{ padding:44px 0 0; }
+  .article-body h2{ font-family:'Fraunces',serif; font-weight:600; font-size:26px; margin:44px 0 16px; letter-spacing:-0.01em; }
+  .article-body p{ font-size:16px; color:#d8c9b6; margin-bottom:18px; }
+  .article-body p strong{ color:var(--cream); }
+  .article-body ul{ margin:0 0 18px 22px; color:#d8c9b6; font-size:16px; }
+  .article-body li{ margin-bottom:8px; }
+  .lede{ font-family:'Fraunces',serif; font-size:20px; font-weight:400; color:var(--cream); margin-bottom:28px; line-height:1.6; }
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:28px 0 36px; }
+  .stat{ border:1px solid var(--ring); border-radius:6px; padding:20px; text-align:center; }
+  .stat .num{ font-family:'Fraunces',serif; font-weight:600; font-size:30px; color:var(--ember); }
+  .stat .lbl{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-top:6px; }
+  .note{ border-left:3px solid var(--ember); padding:4px 0 4px 20px; margin:28px 0; color:var(--muted); font-size:14.5px; font-style:italic; }
+  .disclosure{ border:1px solid var(--ring); border-radius:6px; padding:18px 22px; font-size:12.5px; color:var(--muted); display:flex; gap:12px; align-items:flex-start; margin:48px 0 0; }
+  .disclosure .mark{ font-family:'Space Mono',monospace; color:var(--ember); font-size:13px; flex-shrink:0; }
+  .related{ padding:60px 0; border-top:1px solid var(--ring); margin-top:50px; }
+  .related h2{ font-family:'Fraunces',serif; font-weight:600; font-size:26px; margin-bottom:28px; }
+  .related-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .related-card{ background:var(--panel); border:1px solid var(--ring); border-radius:6px; padding:20px; transition:border-color .15s,transform .15s; text-decoration:none; display:block; }
+  .related-card:hover{ border-color:var(--ember); transform:translateY(-3px); }
+  .related-card .tag{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ember); margin-bottom:10px; display:block; }
+  .related-card h3{ font-family:'Fraunces',serif; font-weight:600; font-size:16px; line-height:1.3; color:var(--cream); }
+  footer{ border-top:1px solid var(--ring); padding:36px 0; display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); flex-wrap:wrap; gap:16px; }
+  @media(max-width:760px){ h1{ font-size:30px; } .stat-row{ grid-template-columns:1fr; } .related-grid{ grid-template-columns:1fr; } .navlinks{ display:none; } }
+</style>
+</head>
+<body>
+
+  <div class="wrap-wide">
+    <header>
+      <div class="nav">
+        <a href="index.html" class="logo">Ved<span>vis</span></a>
+        <nav class="navlinks">
+          <a href="fuktkvot.html">Fuktkvot</a>
+          <a href="forvaring.html">Förvaring</a>
+          <a href="tradslag.html">Trädslag</a>
+          <a href="klyvverktyg.html">Verktyg</a>
+          <a href="kalkylator.html">Kalkylator</a>
+          <a href="om.html">Om</a>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <div class="wrap">
+    <div class="article-head">
+      <div class="breadcrumb"><a href="index.html">Vedvis</a> / Förvaring</div>
+      <span class="tag">Grunder</span>
+      <h1>Vedhässja vs vedbod — vad torkar bäst?</h1>
+      <div class="article-meta">
+        <span>8 min läsning</span>
+        <span>Uppdaterad jan 2026</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p class="lede">Vedhässja och vedbod är två vanliga sätt att förvara ved under torkning — men de fungerar på olika sätt och passar olika situationer. Vilket alternativ som torkar bäst beror på flera faktorer, och svaret är inte alltid det man förväntar sig.</p>
+
+      <p>Här går vi igenom skillnaderna i praktiken, baserat på hur de två metoderna hanterar de tre viktigaste faktorerna för vedtorkning: sol, vind och skydd från regn.</p>
+
+      <div class="stat-row">
+        <div class="stat"><div class="num">Sol</div><div class="lbl">Faktor 1</div></div>
+        <div class="stat"><div class="num">Vind</div><div class="lbl">Faktor 2</div></div>
+        <div class="stat"><div class="num">Regnskydd</div><div class="lbl">Faktor 3</div></div>
+      </div>
+
+      <h2>Vad är en vedhässja?</h2>
+      <p>En vedhässja är en öppen stapel utan väggar — veden staplas direkt utomhus, ofta med presenning eller bark som skydd på toppen. Konstruktionen kan variera från enkla pålar i marken till mer stabila ramar av trä eller metall.</p>
+      <p>Principen är att maximera luftgenomströmning runt varje vedträ, vilket teoretiskt ger snabbare torkning. I praktiken beror resultatet mycket på placering och väderförhållanden.</p>
+
+      <h2>Vedhässjan — fördelar och begränsningar</h2>
+      <p>En välplacerad vedhässja på en solig och blåsig plats kan torka ved snabbare än en vedbod under sommarmånaderna, eftersom ingenting hindrar sol och vind från att nå veden direkt.</p>
+      <p>Begränsningarna är dock tydliga:</p>
+      <ul>
+        <li>Skyddet från regn är beroende av hur täckningen sitter — blåser presenningen undan torkar veden bakåt under en regnig period</li>
+        <li>Veden är mer exponerad för markfukt om stapeln inte är upplyft ordentligt</li>
+        <li>Fungerar sämre på skuggiga eller vindskyddade tomter</li>
+        <li>Kräver mer tillsyn och justering av täckning under säsongen</li>
+      </ul>
+
+      <h2>Vedboden — mer skydd, något långsammare torkning</h2>
+      <p>En vedbod med öppna sidor ger ett mer konsekvent skydd från regn, samtidigt som luftcirkulation tillåts genom sidorna. Det vanligaste resultatet är att veden torkar något långsammare än i en optimal hässja, men mer jämnt och utan risk för bakslag vid dåligt väder.</p>
+      <p>Boden passar bättre för:</p>
+      <ul>
+        <li>Tomter med begränsad sol eller vind</li>
+        <li>Den som vill minimera tillsyn under sommaren</li>
+        <li>Förvaring av redan torr ved över vintern</li>
+        <li>Kombinerad torkning och lagring på samma plats</li>
+      </ul>
+
+      <div class="note">
+        En vanlig kompromiss är att använda vedhässja för aktiv torkning under sommarens bästa månader, och sedan flytta in torr ved i en bod inför vintern. Det kombinerar det bästa av båda metoderna.
+      </div>
+
+      <h2>Vad som troligen spelar störst roll</h2>
+      <p>Forskning och erfarenhet från vedeldning pekar på att <strong>platsen</strong> spelar större roll än konstruktionen. En vedhässja på norrsidan av huset i skugga torkar troligen sämre än en vedbod på södersidan med god luftgenomströmning — oavsett vad teorin säger om öppna konstruktioner.</p>
+      <p>Tumregeln som brukar framhållas: välj den placering som ger mest sol och vind, och låt det avgöra konstruktionen snarare än tvärtom.</p>
+
+      <h2>Sammanfattning</h2>
+      <p>Varken vedhässja eller vedbod är överlägset det andra i alla situationer. En välplacerad hässja med bra täckning kan ge snabbare torkning, men kräver mer tillsyn. En vedbod med öppna sidor ger mer konsekvent skydd och mindre skötsel, men torkar möjligen något långsammare. Platsen på tomten är troligen viktigare än valet mellan de två.
+      <div class="disclosure">
+        <span class="mark">i</span>
+        <span>Vedvis innehåller affiliatelänkar. Om du köper via en länk på sajten kan vi få en liten provision, utan extra kostnad för dig. Vi rekommenderar bara produkter vi själva skulle valt baserat på specifikationer och användarrecensioner.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap-wide">
+    <div class="related">
+      <h2>Läs vidare</h2>
+      <div class="related-grid">
+        <a href="forvaring.html" class="related-card">
+          <span class="tag">Förvaring</span>
+          <h3>Förvara ved rätt — undvik mögel och röta</h3>
+        </a>
+        <a href="vedbodar.html" class="related-card">
+          <span class="tag">Jämförelse</span>
+          <h3>Färdiga vedbodar — 5 alternativ jämförda</h3>
+        </a>
+        <a href="fuktkvot.html" class="related-card">
+          <span class="tag">Grunder</span>
+          <h3>Hur torr ska veden vara innan eldning?</h3>
+        </a>
+      </div>
+    </div>
+    <footer>
+      <a href="index.html" class="logo" style="font-family:'Fraunces',serif;font-weight:700;font-size:17px;text-decoration:none;color:var(--cream);">Ved<span style="color:var(--ember)">vis</span></a>
+      <div style="text-align:right;">
+        <div>© 2026 Vedvis — Byggd med kunskap om vedeldning</div>
+        <div style="font-size:11px;margin-top:4px;color:#6b5a4a;">Informationen på Vedvis är allmän vägledning och ersätter inte professionell rådgivning. Vi ansvarar inte för beslut fattade baserat på innehållet på sajten.</div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>
